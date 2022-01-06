@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+
+import "./App.css";
+import SnackBoard from "./SnackBoard";
+import CommentBoard from "./CommentBoard";
+import Header from "./Header";
+import SnackForm from "./SnackForm";
+import CommentForm from "./CommentForm";
 
 function App() {
+  const [snackList, setSnackList] = useState([]);
+  const [commentList, setCommentList] = useState([])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header />
+      <SnackBoard snackList={snackList} setSnackList={setSnackList} />
+      <CommentBoard commentList={commentList} setCommentList={setCommentList}/>
+      <SnackForm />
+      <CommentForm />
     </div>
   );
 }
