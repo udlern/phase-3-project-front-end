@@ -6,10 +6,13 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 
+
 const API = "http://localhost:9292/comments";
 
-function CommentItems({ comment }) {
-  const [employeeId, setEmployeeId] = useState("");
+function CommentItems({ comment, handleEditClick  }) {
+ 
+
+  
 
   function handleClickDelete() {
     fetch(`${API}/${comment.id}`, {
@@ -20,25 +23,14 @@ function CommentItems({ comment }) {
     document.location.reload();
   }
 
-  function handleClickSnackEdit() {
-    const reqBody = {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        employee_id: employeeId,
-        comment_content: comment,
-      }),
-    };
-    fetch(API, reqBody)
-      .then((resp) => resp.json())
-      .then((data) => console.log(data));
-  }
+
+
+
+
   return (
+    <div className="container-comment">
     <div className="row">
-      <div className="column">
+      <div className="column-comment">
         <div className="card">
           <Card sx={{ maxWidth: 345 }}>
             <CardActionArea>
@@ -51,9 +43,6 @@ function CommentItems({ comment }) {
                 </Typography>
               </CardContent>
             </CardActionArea>
-            <Button variant="contained" onClick={handleClickSnackEdit}>
-              Edit
-            </Button>
             <Button
               onClick={handleClickDelete}
               variant="outlined"
@@ -61,9 +50,13 @@ function CommentItems({ comment }) {
             >
               Delete
             </Button>
+            <Button variant="contained" onClick={() => handleEditClick(comment.id, comment.employee.id)}>
+            Edit
+          </Button>
           </Card>
         </div>
       </div>
+    </div>
     </div>
   );
 }

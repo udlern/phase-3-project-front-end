@@ -6,9 +6,9 @@ import SnackForm from "./snacks/SnackForm";
 import CommentForm from "./comments/CommentForm";
 
 
-function Header() {
-  const [snackFormOpen, setSnackFormOpen] = useState(false)
-  const [commentFormOpen, setCommentFormOpen] = useState(false)
+function Header({setSnackFormOpen, setCommentFormOpen}) {
+//   const [snackFormOpen, setSnackFormOpen] = useState(false)
+//   const [commentFormOpen, setCommentFormOpen] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -53,8 +53,8 @@ function Header() {
 
       <h1 className="header">Snack It Up! 💼🥯</h1>
 
-      <SnackForm snackFormOpen={snackFormOpen} setSnackFormOpen={setSnackFormOpen}/>
-      <CommentForm commentFormOpen={commentFormOpen} setCommentFormOpen={setCommentFormOpen}/>
+      {/* <SnackForm snackFormOpen={snackFormOpen} setSnackFormOpen={setSnackFormOpen}/>
+      <CommentForm commentFormOpen={commentFormOpen} setCommentFormOpen={setCommentFormOpen}/> */}
     </>
   );
 }

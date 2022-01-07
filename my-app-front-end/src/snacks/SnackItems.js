@@ -18,8 +18,9 @@ function SnackItems({ snack }) {
     document.location.reload();
   }
   return (
+    <div className="container-snack">
     <div className="row">
-      <div className="column">
+      <div className="column-snack">
         <div className="card">
           <Card sx={{ maxWidth: 345 }}>
             <CardMedia
@@ -56,6 +57,7 @@ function SnackItems({ snack }) {
           </Card>
         </div>
       </div>
+    </div>
     </div>
   );
 }

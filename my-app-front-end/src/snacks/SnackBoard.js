@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SnackItems from "./SnackItems";
 
 const API = "http://localhost:9292/snacks";

@@ -10,12 +10,16 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
 const API = "http://localhost:9292/comments";
-const APIEmp = "http://localhost:9292/employees";
 
-function CommentForm({ commentFormOpen, setCommentFormOpen }) {
-  const [comment, setComment] = useState("");
-  const [employeeList, setEmployeeList] = useState([]);
-  const [employeeId, setEmployeeId] = useState("");
+
+function CommentForm({
+  commentList,
+  commentId,
+  commentFormOpen,
+  setCommentFormOpen, employeeList, employeeId, setEmployeeId, employee, setEmployee, comment, setComment, handleOnSubmitEditForm, handleOnSubmitNewForm
+}) {
+ 
+ 
 
   const style = {
     position: "absolute",
@@ -29,11 +33,27 @@ function CommentForm({ commentFormOpen, setCommentFormOpen }) {
     p: 4,
   };
 
+
   useEffect(() => {
-    fetch(APIEmp)
-      .then((resp) => resp.json())
-      .then(setEmployeeList);
-  }, []);
+    if (commentId !== "") {
+      const foundComment = commentList.find(
+        (comment) => comment.id === commentId
+      );
+      setComment(foundComment.comment_content);
+      console.log(comment);
+
+    }
+  }, [commentFormOpen]);
+
+  useEffect(() => {
+    if (employeeId !== "") {
+      const foundEmployee = employeeList.find(
+        (employee) => employee.id === employeeId
+      );
+      setEmployee(foundEmployee.name);
+      console.log(employee);
+    }
+  }, [commentFormOpen]);
 
   function handleOnChangeComment(event) {
     setComment(event.target.value);
@@ -107,7 +127,7 @@ function CommentForm({ commentFormOpen, setCommentFormOpen }) {
               variant="outlined"
             />
           </label>
-          <Button variant="contained" onClick={handleOnSubmit}>
+          <Button variant="contained" onSubmit={handleOnSubmitNewForm}>
             Submit
           </Button>
         </FormControl>
